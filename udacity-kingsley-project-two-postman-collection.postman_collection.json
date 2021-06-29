@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "12cbbdaa-7320-4eb2-9dd8-295d0b480e8a",
+		"name": "udacity-tobenna-project-two-postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Filter Image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/filteredimage?image_url=https://image.geze.com/im/StageSpezial/pboxx-pixelboxx-619726/Des",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"filteredimage"
+					],
+					"query": [
+						{
+							"key": "image_url",
+							"value": "https://image.geze.com/im/StageSpezial/pboxx-pixelboxx-619726/Des"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "http://beanstalk.tobennanwokike.com",
+			"type": "string"
+		}
+	]
+}
