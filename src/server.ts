@@ -36,32 +36,23 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
 
   app.get("/filteredimage", (req, res) => {
-    const { image_url }: { image_url: string } = req.query;
+    let { image_url } = req.query;
 
-    // Validate the image_url query parameter
-    if (!image_url) {
-      return res.send({ message: "The query parameter `image_url` is required" });
+    //    1. validate the image_url query
+    if ( !image_url ) {
+      return res.status(400)
+                .send(`image_url is required`);
     }
 
-    // Filter the image
-    filterImageFromURL(image_url)
-      .then(filteredImagePath => {
-        // Send the resulting file in the response
-        res.sendFile(filteredImagePath, err => {
-          // Delete the file on the server after sending the file
-          if (err) {
-            return res.send({ message: err })
-          }
-          else {
-            deleteLocalFiles([filteredImagePath]);
-          }
-        });
-      })
-      .catch(error => {
-        // Return error message for caught errors
-        return res.send({ message: error });
-      });
+    //2. call filterImageFromURL(image_url) to filter the image
+    const filteredPath = await filterImageFromURL(image_url);
 
+    //    3. send the resulting file in the response
+    return res.status(200)
+              .sendFile(filteredPath, () => {
+                //    4. deletes any files on the server on finish of the response
+                deleteLocalFiles([filteredPath]);
+              });
   });
 
 
