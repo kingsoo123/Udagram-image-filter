@@ -35,7 +35,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   // Displays a simple message to the user
 
 
-  app.get("/filteredimage", (req, res) => {
+  app.get("/filteredimage", (req:express.Request , res:express.Response) => {
     let { image_url } = req.query;
 
     //    1. validate the image_url query
